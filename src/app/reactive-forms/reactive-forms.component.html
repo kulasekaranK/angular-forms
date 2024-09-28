@@ -1,0 +1,171 @@
+<div class="d-flex justify-content-center align-items-center flex-column">
+  <form
+    class="mt-5 bg-light p-5 rounded-4 shadow"
+    [formGroup]="submitForm"
+    (submit)="view(submitForm)"
+  >
+    <div class="mb-5">
+      <h1 class="text-danger text-center mb-0">Register</h1>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="fullname">Fullname</label>
+      <input
+        type="text"
+        name="fullName"
+        id="fullname"
+        class="form-control"
+        formControlName="fullName"
+        [ngClass]="{'is-invalid':submitForm.get('fullName')?.invalid && submitForm.get('fullName')?.dirty}"
+      />
+      <div
+        *ngIf="
+          submitForm.get('fullName')?.invalid &&
+          submitForm.get('fullName')?.dirty
+        "
+      >
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="submitForm.get('fullName')?.errors?.['required']"
+        >
+          FullName is Required!
+        </div>
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="submitForm.get('fullName')?.errors?.['minlength']"
+        >
+          minimum 6 letters Required !
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        [ngClass]="{'is-invalid':submitForm.get('email')?.invalid && submitForm.get('email')?.dirty}"
+      />
+      <div
+        *ngIf="
+          submitForm.get('email')?.invalid && submitForm.get('email')?.dirty
+        "
+      >
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="submitForm.get('email')?.errors?.['required']"
+        >
+          Email is Required !
+        </div>
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="submitForm.get('email')?.errors?.['email']"
+        >
+          Invalid Email Address !
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="Password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="Password"
+        class="form-control"
+        formControlName="password"
+        [ngClass]="{'is-invalid':submitForm.get('password')?.invalid && submitForm.get('password')?.dirty}"
+      />
+      <div
+        *ngIf="
+          submitForm.get('password')?.invalid &&
+          submitForm.get('password')?.dirty
+        "
+      >
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="submitForm.get('password')?.errors?.['required']"
+        >
+          Password is Required !
+        </div>
+        <div
+          class="alert alert-danger mt-2"
+          *ngIf="submitForm.get('password')?.errors?.['pattern']"
+        >
+          <b> Invalid Password! </b> <br />
+          Must contain at least one number <br> and one uppercase <br> and lowercase
+          letter,<br> and at least 8 or <br>more characters
+        </div>
+      </div>
+    </div>
+    <div [formGroup]="addressGroup">
+      <div class="form-group">
+        <label class="form-label" for="city">City</label>
+        <input
+          type="text"
+          name="city"
+          id="city"
+          class="form-control"
+          formControlName="city"
+          [ngClass]="{'is-invalid':city?.invalid && city?.dirty}"
+        />
+        <div *ngIf="city?.invalid && city?.dirty">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="city?.errors?.['required']"
+          >
+            City is Required !
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="pincode">Pincode</label>
+        <input
+          type="text"
+          name="pincode"
+          id="pincode"
+          class="form-control"
+          formControlName="pincode"
+          [ngClass]="{'is-invalid':pincode?.invalid && pincode?.dirty}"
+        />
+        <div *ngIf="pincode?.invalid && pincode?.dirty">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="pincode?.errors?.['required']"
+          >
+            Pincode is Required!
+          </div>
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="pincode?.errors?.['minlength']"
+          >
+            Minimum 6 Numbers Required!
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="country">Country</label>
+        <input
+          type="text"
+          name="country"
+          id="country"
+          class="form-control"
+          formControlName="country"
+          [ngClass]="{'is-invalid':country?.invalid && country?.dirty}"
+        />
+        <div *ngIf="country?.invalid && country?.dirty">
+          <div
+            class="alert alert-danger mt-2"
+            *ngIf="country?.errors?.['required']"
+          >
+            Country is Required !
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end me-2 mt-3">
+      <button class="btn btn-danger" [disabled]="submitForm.invalid">Register</button>
+    </div>
+  </form>
+</div>
